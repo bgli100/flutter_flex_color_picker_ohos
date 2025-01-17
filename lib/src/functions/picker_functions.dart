@@ -44,6 +44,7 @@ extension FlexPickerColorExtensions on Color {
 String platformControlKey(TargetPlatform platform, String key) {
   switch (platform) {
     case TargetPlatform.android:
+    case TargetPlatform.ohos:
     case TargetPlatform.iOS:
     case TargetPlatform.fuchsia:
       return '';
@@ -59,6 +60,7 @@ String platformControlKey(TargetPlatform platform, String key) {
 bool isDesktop(TargetPlatform platform) {
   switch (platform) {
     case TargetPlatform.android:
+    case TargetPlatform.ohos:
     case TargetPlatform.iOS:
     case TargetPlatform.fuchsia:
       return false;

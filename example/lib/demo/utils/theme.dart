@@ -164,6 +164,7 @@ class AppTheme {
       case TargetPlatform.windows:
         return 13;
       case TargetPlatform.iOS:
+      case TargetPlatform.ohos:
       case TargetPlatform.android:
       case TargetPlatform.fuchsia:
         return 14;
