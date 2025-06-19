@@ -19,15 +19,16 @@ class DryIntrinsicWidth extends SingleChildRenderObjectWidget {
   /// Default const constructor.
   const DryIntrinsicWidth({
     super.key,
-    required Widget super.child,
+    required super.child,
   });
 
   @override
-  _RenderDryIntrinsicWidth createRenderObject(BuildContext context) =>
-      _RenderDryIntrinsicWidth();
+  RenderDryIntrinsicWidth createRenderObject(BuildContext context) =>
+      RenderDryIntrinsicWidth();
 }
 
-class _RenderDryIntrinsicWidth extends RenderIntrinsicWidth {
+/// Compute dry layout for DryIntrinsicWidth.
+class RenderDryIntrinsicWidth extends RenderIntrinsicWidth {
   @override
   Size computeDryLayout(BoxConstraints constraints) {
     if (child != null) {
@@ -54,15 +55,16 @@ class DryIntrinsicHeight extends SingleChildRenderObjectWidget {
   /// Default const constructor.
   const DryIntrinsicHeight({
     super.key,
-    required Widget super.child,
+    required super.child,
   });
 
   @override
-  _RenderDryIntrinsicHeight createRenderObject(BuildContext context) =>
-      _RenderDryIntrinsicHeight();
+  RenderDryIntrinsicHeight createRenderObject(BuildContext context) =>
+      RenderDryIntrinsicHeight();
 }
 
-class _RenderDryIntrinsicHeight extends RenderIntrinsicHeight {
+/// Compute dry layout for DryIntrinsicHeight.
+class RenderDryIntrinsicHeight extends RenderIntrinsicHeight {
   @override
   Size computeDryLayout(BoxConstraints constraints) {
     if (child != null) {

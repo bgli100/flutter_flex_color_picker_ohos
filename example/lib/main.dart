@@ -9,7 +9,7 @@ class ColorPickerDemo extends StatefulWidget {
   const ColorPickerDemo({super.key});
 
   @override
-  _ColorPickerDemoState createState() => _ColorPickerDemoState();
+  State<ColorPickerDemo> createState() => _ColorPickerDemoState();
 }
 
 class _ColorPickerDemoState extends State<ColorPickerDemo> {
@@ -27,10 +27,8 @@ class _ColorPickerDemoState extends State<ColorPickerDemo> {
       debugShowCheckedModeBanner: false,
       scrollBehavior: AppScrollBehavior(),
       title: 'ColorPicker',
-      theme: ThemeData.from(colorScheme: const ColorScheme.highContrastLight())
-          .copyWith(scaffoldBackgroundColor: Colors.grey[50]),
-      darkTheme:
-          ThemeData.from(colorScheme: const ColorScheme.highContrastDark()),
+      theme: ThemeData(useMaterial3: true),
+      darkTheme: ThemeData(useMaterial3: true, brightness: Brightness.dark),
       themeMode: themeMode,
       home: ColorPickerPage(
         themeMode: (ThemeMode mode) {
@@ -48,7 +46,7 @@ class ColorPickerPage extends StatefulWidget {
   final ValueChanged<ThemeMode> themeMode;
 
   @override
-  _ColorPickerPageState createState() => _ColorPickerPageState();
+  State<ColorPickerPage> createState() => _ColorPickerPageState();
 }
 
 class _ColorPickerPageState extends State<ColorPickerPage> {
@@ -152,8 +150,14 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
                     context,
                     // We use the dialogSelectColor, as its starting color.
                     dialogSelectColor,
-                    title: Text('ColorPicker',
-                        style: Theme.of(context).textTheme.titleLarge),
+                    // If no style is specified, the default is used, which
+                    // is Theme.of(context).textTheme.titleLarge for the title
+                    // as in a Material 3 default for an AppBar.
+                    title: const Text(
+                      'ColorPicker with very long title',
+                      // Use another TextStyle if you so prefer:
+                      // style: Theme.of(context).textTheme.titleSmall,
+                    ),
                     width: 40,
                     height: 40,
                     spacing: 0,
@@ -193,7 +197,7 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
                     },
                     transitionDuration: const Duration(milliseconds: 400),
                     constraints: const BoxConstraints(
-                        minHeight: 480, minWidth: 320, maxWidth: 320),
+                        minHeight: 480, minWidth: 550, maxWidth: 550),
                   );
                   // We update the dialogSelectColor, to the returned result
                   // color. If the dialog was dismissed it actually returns
@@ -228,7 +232,7 @@ class _ColorPickerPageState extends State<ColorPickerPage> {
               child: Card(
                 elevation: 2,
                 child: ColorPicker(
-                  // Use the screenPickerColor as start color.
+                  // Use the screenPickerColor as color.
                   color: screenPickerColor,
                   // Update the screenPickerColor using the callback.
                   onColorChanged: (Color color) =>

@@ -40,14 +40,15 @@ void main() {
                 ColorPickerType.accent: true,
                 ColorPickerType.bw: false,
                 ColorPickerType.custom: false,
+                ColorPickerType.customSecondary: false,
                 ColorPickerType.wheel: false,
               } &&
-          widget.enableShadesSelection == true &&
-          widget.includeIndex850 == false &&
+          widget.enableShadesSelection &&
+          !widget.includeIndex850 &&
           widget.crossAxisAlignment == CrossAxisAlignment.center &&
           widget.padding == const EdgeInsets.all(16) &&
           widget.columnSpacing == 8 &&
-          widget.enableOpacity == false &&
+          !widget.enableOpacity &&
           widget.opacityTrackHeight == 36 &&
           widget.opacityTrackWidth == null &&
           widget.opacityThumbRadius == 16 &&
@@ -59,35 +60,35 @@ void main() {
           widget.spacing == 4 &&
           widget.runSpacing == 4 &&
           widget.elevation == 0 &&
-          widget.hasBorder == false &&
+          !widget.hasBorder &&
           widget.borderRadius == null &&
           widget.borderColor == null &&
           widget.wheelDiameter == 190 &&
           widget.wheelWidth == 16 &&
           widget.wheelSquarePadding == 0 &&
           widget.wheelSquareBorderRadius == 4 &&
-          widget.wheelHasBorder == false &&
+          !widget.wheelHasBorder &&
           widget.title == null &&
           widget.heading == null &&
           widget.subheading == null &&
           widget.wheelSubheading == null &&
           widget.recentColorsSubheading == null &&
           widget.opacitySubheading == null &&
-          widget.showMaterialName == false &&
+          !widget.showMaterialName &&
           widget.materialNameTextStyle == null &&
-          widget.showColorName == false &&
+          !widget.showColorName &&
           widget.colorNameTextStyle == null &&
-          widget.showColorCode == false &&
-          widget.colorCodeHasColor == false &&
+          !widget.showColorCode &&
+          !widget.colorCodeHasColor &&
           widget.colorCodeTextStyle == null &&
           widget.colorCodePrefixStyle == null &&
-          widget.colorCodeReadOnly == false &&
-          widget.showColorValue == false &&
-          widget.showRecentColors == false &&
+          !widget.colorCodeReadOnly &&
+          !widget.showColorValue &&
+          !widget.showRecentColors &&
           widget.maxRecentColors == 5 &&
           widget.recentColors == const <Color>[] &&
           widget.onRecentColorsChanged == null &&
-          widget.enableTooltips == true &&
+          widget.enableTooltips &&
           widget.selectedPickerTypeColor == null &&
           widget.pickerTypeTextStyle == null &&
           widget.pickerTypeLabels ==
@@ -97,10 +98,14 @@ void main() {
                 ColorPickerType.bw: 'Black & White',
                 ColorPickerType.both: 'Primary & Accent',
                 ColorPickerType.custom: 'Custom',
+                ColorPickerType.customSecondary: 'Option',
                 ColorPickerType.wheel: 'Wheel',
               } &&
           widget.customColorSwatchesAndNames ==
+              const <ColorSwatch<Object>, String>{} &&
+          widget.customSecondaryColorSwatchesAndNames ==
               const <ColorSwatch<Object>, String>{};
+
       expect(find.byWidgetPredicate(defaultPicker), findsOneWidget);
     });
     //
@@ -133,6 +138,7 @@ void main() {
               okTooltip: 'OK NOW',
               closeTooltip: 'CLOSE NOW',
             ),
+            width: 39,
             hasBorder: true,
             borderRadius: 10,
             borderColor: Colors.black,
@@ -164,6 +170,14 @@ void main() {
               ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
                   'Guide Teal',
             },
+            customSecondaryColorSwatchesAndNames: <ColorSwatch<Object>, String>{
+              ColorTools.createPrimarySwatch(const Color(0xFF6200EE)):
+                  'Guide Purple',
+              ColorTools.createPrimarySwatch(const Color(0xFF3700B3)):
+                  'Guide Purple Variant',
+              ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
+                  'Guide Teal',
+            },
           ),
         ),
       );
@@ -186,12 +200,12 @@ void main() {
                 ColorPickerType.custom: true,
                 ColorPickerType.wheel: true,
               } &&
-          widget.enableShadesSelection == true &&
-          widget.includeIndex850 == true &&
+          widget.enableShadesSelection &&
+          widget.includeIndex850 &&
           widget.crossAxisAlignment == CrossAxisAlignment.start &&
           widget.padding == const EdgeInsets.all(16) &&
           widget.columnSpacing == 8 &&
-          widget.enableOpacity == true &&
+          widget.enableOpacity &&
           widget.opacityTrackHeight == 36 &&
           widget.opacityTrackWidth == null &&
           widget.opacityThumbRadius == 16 &&
@@ -204,40 +218,40 @@ void main() {
               ) &&
           widget.copyPasteBehavior == const ColorPickerCopyPasteBehavior() &&
           widget.selectedColorIcon == Icons.check &&
-          widget.width == 40 &&
+          widget.width == 39 &&
           widget.height == 40 &&
           widget.spacing == 4 &&
           widget.runSpacing == 4 &&
           widget.elevation == 0 &&
-          widget.hasBorder == true &&
+          widget.hasBorder &&
           widget.borderRadius == 10 &&
           widget.borderColor == Colors.black &&
           widget.wheelDiameter == 190 &&
           widget.wheelWidth == 32 &&
           widget.wheelSquarePadding == 4 &&
           widget.wheelSquareBorderRadius == 6 &&
-          widget.wheelHasBorder == true &&
+          widget.wheelHasBorder &&
           widget.title != null &&
           widget.heading != null &&
           widget.subheading != null &&
           widget.wheelSubheading != null &&
           widget.opacitySubheading != null &&
           widget.recentColorsSubheading != null &&
-          widget.showMaterialName == true &&
+          widget.showMaterialName &&
           widget.materialNameTextStyle == null &&
-          widget.showColorName == true &&
+          widget.showColorName &&
           widget.colorNameTextStyle == null &&
-          widget.showColorCode == true &&
-          widget.colorCodeHasColor == true &&
+          widget.showColorCode &&
+          widget.colorCodeHasColor &&
           widget.colorCodeTextStyle == null &&
           widget.colorCodePrefixStyle == null &&
-          widget.colorCodeReadOnly == false &&
-          widget.showColorValue == true &&
-          widget.showRecentColors == true &&
+          !widget.colorCodeReadOnly &&
+          widget.showColorValue &&
+          widget.showRecentColors &&
           widget.maxRecentColors == 10 &&
           widget.recentColors == const <Color>[Colors.black, Colors.white] &&
           widget.onRecentColorsChanged != null &&
-          widget.enableTooltips == true &&
+          widget.enableTooltips &&
           widget.selectedPickerTypeColor == Colors.white &&
           widget.pickerTypeTextStyle == null &&
           widget.pickerTypeLabels ==
@@ -247,9 +261,13 @@ void main() {
                 ColorPickerType.bw: 'Black & White',
                 ColorPickerType.both: 'Primary & Accent',
                 ColorPickerType.custom: 'Custom',
+                ColorPickerType.customSecondary: 'Option',
                 ColorPickerType.wheel: 'Wheel',
               } &&
-          widget.customColorSwatchesAndNames != <ColorSwatch<Object>, String>{};
+          widget.customColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{} &&
+          widget.customSecondaryColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{};
       expect(find.byWidgetPredicate(customPicker, skipOffstage: false),
           findsOneWidget);
     });
@@ -314,6 +332,14 @@ void main() {
               ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
                   'Guide Teal',
             },
+            customSecondaryColorSwatchesAndNames: <ColorSwatch<Object>, String>{
+              ColorTools.createPrimarySwatch(const Color(0xFF6200EE)):
+                  'Guide Purple',
+              ColorTools.createPrimarySwatch(const Color(0xFF3700B3)):
+                  'Guide Purple Variant',
+              ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
+                  'Guide Teal',
+            },
           ),
         ),
       );
@@ -336,12 +362,12 @@ void main() {
                 ColorPickerType.custom: true,
                 ColorPickerType.wheel: true,
               } &&
-          widget.enableShadesSelection == true &&
-          widget.includeIndex850 == true &&
+          widget.enableShadesSelection &&
+          widget.includeIndex850 &&
           widget.crossAxisAlignment == CrossAxisAlignment.start &&
           widget.padding == const EdgeInsets.all(16) &&
           widget.columnSpacing == 8 &&
-          widget.enableOpacity == true &&
+          widget.enableOpacity &&
           widget.opacityTrackHeight == 36 &&
           widget.opacityTrackWidth == null &&
           widget.opacityThumbRadius == 16 &&
@@ -359,35 +385,35 @@ void main() {
           widget.spacing == 4 &&
           widget.runSpacing == 4 &&
           widget.elevation == 0 &&
-          widget.hasBorder == true &&
+          widget.hasBorder &&
           widget.borderRadius == 10 &&
           widget.borderColor == Colors.black &&
           widget.wheelDiameter == 190 &&
           widget.wheelWidth == 32 &&
           widget.wheelSquarePadding == 5 &&
           widget.wheelSquareBorderRadius == 0 &&
-          widget.wheelHasBorder == true &&
+          widget.wheelHasBorder &&
           widget.title != null &&
           widget.heading != null &&
           widget.subheading != null &&
           widget.wheelSubheading != null &&
           widget.opacitySubheading != null &&
           widget.recentColorsSubheading != null &&
-          widget.showMaterialName == true &&
+          widget.showMaterialName &&
           widget.materialNameTextStyle == null &&
-          widget.showColorName == true &&
+          widget.showColorName &&
           widget.colorNameTextStyle == null &&
-          widget.showColorCode == true &&
-          widget.colorCodeHasColor == true &&
+          widget.showColorCode &&
+          widget.colorCodeHasColor &&
           widget.colorCodeTextStyle == null &&
           widget.colorCodePrefixStyle == null &&
-          widget.colorCodeReadOnly == false &&
-          widget.showColorValue == true &&
-          widget.showRecentColors == true &&
+          !widget.colorCodeReadOnly &&
+          widget.showColorValue &&
+          widget.showRecentColors &&
           widget.maxRecentColors == 10 &&
           widget.recentColors == const <Color>[Colors.black, Colors.white] &&
           widget.onRecentColorsChanged != null &&
-          widget.enableTooltips == true &&
+          widget.enableTooltips &&
           widget.selectedPickerTypeColor == Colors.white &&
           widget.pickerTypeTextStyle == null &&
           widget.pickerTypeLabels ==
@@ -397,9 +423,13 @@ void main() {
                 ColorPickerType.bw: 'Black & White',
                 ColorPickerType.both: 'Primary & Accent',
                 ColorPickerType.custom: 'Custom',
+                ColorPickerType.customSecondary: 'Option',
                 ColorPickerType.wheel: 'Wheel',
               } &&
-          widget.customColorSwatchesAndNames != <ColorSwatch<Object>, String>{};
+          widget.customColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{} &&
+          widget.customSecondaryColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{};
       expect(find.byWidgetPredicate(customPicker), findsOneWidget);
     });
 
@@ -408,7 +438,7 @@ void main() {
     //
     testWidgets(
         'CPI1.4: Finds custom-3 ColorPicker() using custom colors '
-        'and tonal palette', (WidgetTester tester) async {
+        'and tonal palette and same size tonal', (WidgetTester tester) async {
       await tester.pumpWidget(
         TestWidget(
           widget: ColorPicker(
@@ -429,6 +459,7 @@ void main() {
             crossAxisAlignment: CrossAxisAlignment.start,
             enableOpacity: true,
             enableTonalPalette: true,
+            tonalColorSameSize: true,
             opacityTrackHeight: 40,
             opacityThumbRadius: 25,
             opacityTrackWidth: 300,
@@ -491,6 +522,14 @@ void main() {
               ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
                   'Guide Teal',
             },
+            customSecondaryColorSwatchesAndNames: <ColorSwatch<Object>, String>{
+              ColorTools.createPrimarySwatch(const Color(0xFF6200EE)):
+                  'Guide Purple',
+              ColorTools.createPrimarySwatch(const Color(0xFF3700B3)):
+                  'Guide Purple Variant',
+              ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
+                  'Guide Teal',
+            },
           ),
         ),
       );
@@ -513,12 +552,12 @@ void main() {
                 ColorPickerType.custom: true,
                 ColorPickerType.wheel: true,
               } &&
-          widget.enableShadesSelection == true &&
-          widget.includeIndex850 == true &&
+          widget.enableShadesSelection &&
+          widget.includeIndex850 &&
           widget.crossAxisAlignment == CrossAxisAlignment.start &&
           widget.padding == const EdgeInsets.all(16) &&
           widget.columnSpacing == 8 &&
-          widget.enableOpacity == true &&
+          widget.enableOpacity &&
           widget.opacityTrackHeight == 40 &&
           widget.opacityThumbRadius == 25 &&
           widget.opacityTrackWidth == 300 &&
@@ -557,35 +596,35 @@ void main() {
           widget.spacing == 4 &&
           widget.runSpacing == 4 &&
           widget.elevation == 0 &&
-          widget.hasBorder == true &&
+          widget.hasBorder &&
           widget.borderRadius == 10 &&
           widget.borderColor == Colors.black &&
           widget.wheelDiameter == 190 &&
           widget.wheelSquarePadding == 10 &&
           widget.wheelSquareBorderRadius == 2 &&
           widget.wheelWidth == 32 &&
-          widget.wheelHasBorder == true &&
+          widget.wheelHasBorder &&
           widget.title != null &&
           widget.heading != null &&
           widget.subheading != null &&
           widget.wheelSubheading != null &&
           widget.opacitySubheading != null &&
           widget.recentColorsSubheading != null &&
-          widget.showMaterialName == true &&
+          widget.showMaterialName &&
           widget.materialNameTextStyle == null &&
-          widget.showColorName == true &&
+          widget.showColorName &&
           widget.colorNameTextStyle == null &&
-          widget.showColorCode == true &&
-          widget.colorCodeHasColor == true &&
+          widget.showColorCode &&
+          widget.colorCodeHasColor &&
           widget.colorCodeTextStyle == null &&
           widget.colorCodePrefixStyle == null &&
-          widget.colorCodeReadOnly == false &&
-          widget.showColorValue == true &&
-          widget.showRecentColors == true &&
+          !widget.colorCodeReadOnly &&
+          widget.showColorValue &&
+          widget.showRecentColors &&
           widget.maxRecentColors == 10 &&
           widget.recentColors == const <Color>[Colors.black, Colors.white] &&
           widget.onRecentColorsChanged != null &&
-          widget.enableTooltips == true &&
+          widget.enableTooltips &&
           widget.selectedPickerTypeColor == Colors.white &&
           widget.pickerTypeTextStyle == null &&
           widget.pickerTypeLabels ==
@@ -595,9 +634,13 @@ void main() {
                 ColorPickerType.bw: 'Black & White',
                 ColorPickerType.both: 'Primary & Accent',
                 ColorPickerType.custom: 'Custom',
+                ColorPickerType.customSecondary: 'Option',
                 ColorPickerType.wheel: 'Wheel',
               } &&
-          widget.customColorSwatchesAndNames != <ColorSwatch<Object>, String>{};
+          widget.customColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{} &&
+          widget.customSecondaryColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{};
       expect(find.byWidgetPredicate(customPicker), findsOneWidget);
     });
 
@@ -686,6 +729,14 @@ void main() {
               ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
                   'Guide Teal',
             },
+            customSecondaryColorSwatchesAndNames: <ColorSwatch<Object>, String>{
+              ColorTools.createPrimarySwatch(const Color(0xFF6200EE)):
+                  'Guide Purple',
+              ColorTools.createPrimarySwatch(const Color(0xFF3700B3)):
+                  'Guide Purple Variant',
+              ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
+                  'Guide Teal',
+            },
           ),
         ),
       );
@@ -708,12 +759,12 @@ void main() {
                 ColorPickerType.custom: true,
                 ColorPickerType.wheel: true,
               } &&
-          widget.enableShadesSelection == true &&
-          widget.includeIndex850 == true &&
+          widget.enableShadesSelection &&
+          widget.includeIndex850 &&
           widget.crossAxisAlignment == CrossAxisAlignment.start &&
           widget.padding == const EdgeInsets.all(16) &&
           widget.columnSpacing == 8 &&
-          widget.enableOpacity == true &&
+          widget.enableOpacity &&
           widget.opacityTrackHeight == 40 &&
           widget.opacityThumbRadius == 25 &&
           widget.opacityTrackWidth == 300 &&
@@ -752,35 +803,35 @@ void main() {
           widget.spacing == 4 &&
           widget.runSpacing == 4 &&
           widget.elevation == 0 &&
-          widget.hasBorder == true &&
+          widget.hasBorder &&
           widget.borderRadius == 10 &&
           widget.borderColor == Colors.black &&
           widget.wheelDiameter == 190 &&
           widget.wheelWidth == 32 &&
           widget.wheelSquarePadding == 0 &&
           widget.wheelSquareBorderRadius == 0 &&
-          widget.wheelHasBorder == true &&
+          widget.wheelHasBorder &&
           widget.title != null &&
           widget.heading != null &&
           widget.subheading != null &&
           widget.wheelSubheading != null &&
           widget.opacitySubheading != null &&
           widget.recentColorsSubheading != null &&
-          widget.showMaterialName == true &&
+          widget.showMaterialName &&
           widget.materialNameTextStyle == null &&
-          widget.showColorName == true &&
+          widget.showColorName &&
           widget.colorNameTextStyle == null &&
-          widget.showColorCode == true &&
-          widget.colorCodeHasColor == true &&
+          widget.showColorCode &&
+          widget.colorCodeHasColor &&
           widget.colorCodeTextStyle == null &&
           widget.colorCodePrefixStyle == null &&
-          widget.colorCodeReadOnly == false &&
-          widget.showColorValue == true &&
-          widget.showRecentColors == true &&
+          !widget.colorCodeReadOnly &&
+          widget.showColorValue &&
+          widget.showRecentColors &&
           widget.maxRecentColors == 10 &&
           widget.recentColors == const <Color>[Colors.black, Colors.white] &&
           widget.onRecentColorsChanged != null &&
-          widget.enableTooltips == true &&
+          widget.enableTooltips &&
           widget.selectedPickerTypeColor == Colors.white &&
           widget.pickerTypeTextStyle == null &&
           widget.pickerTypeLabels ==
@@ -790,9 +841,13 @@ void main() {
                 ColorPickerType.bw: 'Black & White',
                 ColorPickerType.both: 'Primary & Accent',
                 ColorPickerType.custom: 'Custom',
+                ColorPickerType.customSecondary: 'Option',
                 ColorPickerType.wheel: 'Wheel',
               } &&
-          widget.customColorSwatchesAndNames != <ColorSwatch<Object>, String>{};
+          widget.customColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{} &&
+          widget.customSecondaryColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{};
       expect(find.byWidgetPredicate(customPicker), findsOneWidget);
     });
 
@@ -881,6 +936,14 @@ void main() {
               ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
                   'Guide Teal',
             },
+            customSecondaryColorSwatchesAndNames: <ColorSwatch<Object>, String>{
+              ColorTools.createPrimarySwatch(const Color(0xFF6200EE)):
+                  'Guide Purple',
+              ColorTools.createPrimarySwatch(const Color(0xFF3700B3)):
+                  'Guide Purple Variant',
+              ColorTools.createAccentSwatch(const Color(0xFF03DAC6)):
+                  'Guide Teal',
+            },
           ),
         ),
       );
@@ -903,12 +966,12 @@ void main() {
                 ColorPickerType.custom: true,
                 ColorPickerType.wheel: true,
               } &&
-          widget.enableShadesSelection == true &&
-          widget.includeIndex850 == true &&
+          widget.enableShadesSelection &&
+          widget.includeIndex850 &&
           widget.crossAxisAlignment == CrossAxisAlignment.start &&
           widget.padding == const EdgeInsets.all(16) &&
           widget.columnSpacing == 8 &&
-          widget.enableOpacity == true &&
+          widget.enableOpacity &&
           widget.opacityTrackHeight == 40 &&
           widget.opacityThumbRadius == 25 &&
           widget.opacityTrackWidth == 300 &&
@@ -947,35 +1010,35 @@ void main() {
           widget.spacing == 4 &&
           widget.runSpacing == 4 &&
           widget.elevation == 0 &&
-          widget.hasBorder == true &&
+          widget.hasBorder &&
           widget.borderRadius == 10 &&
           widget.borderColor == Colors.black &&
           widget.wheelDiameter == 190 &&
           widget.wheelWidth == 32 &&
           widget.wheelSquarePadding == 3.5 &&
           widget.wheelSquareBorderRadius == 3.5 &&
-          widget.wheelHasBorder == true &&
+          widget.wheelHasBorder &&
           widget.title != null &&
           widget.heading != null &&
           widget.subheading != null &&
           widget.wheelSubheading != null &&
           widget.opacitySubheading != null &&
           widget.recentColorsSubheading != null &&
-          widget.showMaterialName == true &&
+          widget.showMaterialName &&
           widget.materialNameTextStyle == null &&
-          widget.showColorName == true &&
+          widget.showColorName &&
           widget.colorNameTextStyle == null &&
-          widget.showColorCode == true &&
-          widget.colorCodeHasColor == true &&
+          widget.showColorCode &&
+          widget.colorCodeHasColor &&
           widget.colorCodeTextStyle == null &&
           widget.colorCodePrefixStyle == null &&
-          widget.colorCodeReadOnly == false &&
-          widget.showColorValue == true &&
-          widget.showRecentColors == true &&
+          !widget.colorCodeReadOnly &&
+          widget.showColorValue &&
+          widget.showRecentColors &&
           widget.maxRecentColors == 10 &&
           widget.recentColors == const <Color>[Colors.black, Colors.white] &&
           widget.onRecentColorsChanged != null &&
-          widget.enableTooltips == true &&
+          widget.enableTooltips &&
           widget.selectedPickerTypeColor == Colors.white &&
           widget.pickerTypeTextStyle == null &&
           widget.pickerTypeLabels ==
@@ -985,9 +1048,13 @@ void main() {
                 ColorPickerType.bw: 'Black & White',
                 ColorPickerType.both: 'Primary & Accent',
                 ColorPickerType.custom: 'Custom',
+                ColorPickerType.customSecondary: 'Option',
                 ColorPickerType.wheel: 'Wheel',
               } &&
-          widget.customColorSwatchesAndNames != <ColorSwatch<Object>, String>{};
+          widget.customColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{} &&
+          widget.customSecondaryColorSwatchesAndNames !=
+              <ColorSwatch<Object>, String>{};
       expect(find.byWidgetPredicate(customPicker), findsOneWidget);
     });
   });
